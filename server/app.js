@@ -41,3 +41,16 @@ app.post("/api/items", (req, res) => {
   items.push(newItem);
   res.json(newItem);
 });
+
+// Update item
+app.put("/api/items/:id", (req, res) => {
+  const item = items.find(i => i.id === parseInt(req.params.id));
+  console.log(item)
+  if (item) {
+    item.name = req.body.name || item.name;
+    item.description = req.body.description || item.description;
+    res.json(item);
+  } else {
+    res.status(404).json({ message: "Item not found" });
+  }
+});

@@ -19,3 +19,13 @@ let items = [
 app.get("/api/items", (req, res) => {
   res.json(items);
 });
+
+// Get item by id
+app.get("/api/items/:id", (req, res) => {
+  const item = items.find(i => i.id === parseInt(req.params.id));
+  if (item) {
+    res.json(item);
+  } else {
+    res.status(404).json({ message: "Item not found" });
+  }
+});

@@ -29,3 +29,9 @@ function App() {
     await axios.delete(`http://localhost:5000/api/items/${id}`);
     setItems(items.filter((item) => item.id !== id));
   };
+
+  const editItem = (item) => {
+    setEditingItemId(item.id);
+    setName(item.name);
+    setDescription(item.description);
+  };

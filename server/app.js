@@ -54,3 +54,19 @@ app.put("/api/items/:id", (req, res) => {
     res.status(404).json({ message: "Item not found" });
   }
 });
+
+// Delete item
+app.delete("/api/items/:id", (req, res) => {
+  const index = items.findIndex(i => i.id === parseInt(req.params.id));
+  if (index !== -1) {
+    items.splice(index, 1);
+    res.json({ message: "Item deleted" });
+  } else {
+    res.status(404).json({ message: "Item not found" });
+  }
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

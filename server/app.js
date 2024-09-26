@@ -29,3 +29,15 @@ app.get("/api/items/:id", (req, res) => {
     res.status(404).json({ message: "Item not found" });
   }
 });
+
+// Create new 
+
+app.post("/api/items", (req, res) => {
+  const newItem = {
+    id: items.length + 1,
+    name: req.body.name,
+    description: req.body.description,
+  };
+  items.push(newItem);
+  res.json(newItem);
+});
